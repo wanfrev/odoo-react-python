@@ -1,43 +1,66 @@
-# React + TypeScript + Vite
+# Requisitos previos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Node.js >= 18.x
+- npm >= 9.x
 
-Currently, two official plugins are available:
+## Instalación
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clona el repositorio o descarga el código fuente.
+2. Abre una terminal en la carpeta `frontend`.
+3. Instala las dependencias:
 
-## Expanding the ESLint configuration
+   ```bash
+   npm install
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Uso en desarrollo
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Inicia el servidor de desarrollo con recarga automática:
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev
+yarn dev
 ```
+
+Abre tu navegador en [http://localhost:5173](http://localhost:5173) para ver la aplicación.
+
+## Scripts disponibles
+
+- `npm run dev`: Inicia el servidor de desarrollo.
+- `npm run build`: Compila la app para producción.
+- `npm run preview`: Previsualiza la app de producción localmente.
+- `npm run lint`: Ejecuta ESLint para revisar el código.
+
+## Estructura del proyecto
+
+- `src/components/`: Componentes reutilizables (listas de clientes, contactos, leads).
+- `src/pages/`: Páginas y navegación por pestañas.
+- `src/services/api.ts`: Funciones para consumir la API de Odoo CRM.
+- `src/main.tsx`: Punto de entrada principal.
+- `public/`: Archivos estáticos.
+
+## Configuración de la API
+
+Por defecto, la API debe estar disponible en `http://localhost:8000`. Puedes modificar la URL en `src/services/api.ts` si tu backend está en otra dirección.
+
+## Notas
+
+- Los estilos se gestionan con CSS Modules para evitar conflictos globales.
+- El proyecto está configurado con ESLint y TypeScript para asegurar calidad y buenas prácticas.
+
+## Despliegue
+
+Para compilar la app para producción:
+
+```bash
+npm run build
+```
+
+Los archivos listos para producción estarán en la carpeta `dist/`.
+
+---
+
+Si tienes dudas o problemas, revisa la documentación de Vite y React, o contacta al responsable del proyecto.
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 

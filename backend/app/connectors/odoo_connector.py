@@ -17,13 +17,34 @@ class OdooConnector:
         self.models = xmlrpc.client.ServerProxy(f"{self.url}/xmlrpc/2/object")
 
     def obtener_clientes(self):
-        # Ajusta el dominio y campos según tu configuración en Odoo
+        # Adjust the domain and fields according to your Odoo configuration
         domain = []
         fields = ["id", "name", "email", "phone", "company_id"]
-        clientes = self.models.execute_kw(
+        clients = self.models.execute_kw(
             self.db, self.uid, self.password,
             "res.partner", "search_read",
             [domain],
             {"fields": fields}
         )
-        return clientes
+        return clients
+
+    def obtener_leads(self):
+        domain = []
+        fields = ["id", "name", "probability", "stage_id"]
+        leads = self.models.execute_kw(
+            self.db, self.uid, self.password,
+            "crm.lead", "search_read",
+            [domain],
+            {"fields": fields}
+        )
+        return leads
+    def obtener_contacts(self):
+        domain = []
+        fields = ["id", "name", "email", "phone", "company_id"]
+        contacts = self.models.execute_kw(
+            self.db, self.uid, self.password,
+            "res.partner", "search_read",
+            [domain],
+            {"fields": fields}
+        )
+        return contacts

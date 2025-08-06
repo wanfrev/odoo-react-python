@@ -1,13 +1,29 @@
+
+
 from fastapi import APIRouter, HTTPException
 from typing import List
-from app.services.crm_service import listar_clientes
-from app.models.crm_models import Cliente
+from app.services.crm_service import get_clients, get_leads, get_contacts
+from app.models.crm_models import Client, Lead
 
 router = APIRouter(prefix="/crm", tags=["CRM"])
 
-@router.get("/clientes", response_model=List[Cliente])
-async def get_clientes():
+@router.get("/clients", response_model=List[Client])
+async def clients():
     try:
-        return listar_clientes()
+        return get_clients()
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=str(e))
+
+@router.get("/leads", response_model=List[Lead])
+async def leads():
+    try:
+        return get_leads()
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=str(e))
+
+@router.get("/contacts", response_model=List[Client])
+async def contacts():
+    try:
+        return get_contacts()
     except Exception as e:
         raise HTTPException(status_code=502, detail=str(e))
