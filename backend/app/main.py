@@ -1,10 +1,6 @@
 from fastapi import FastAPI
-from app.api import crm
+from app.api.crm import router as crm_router
 
-app = FastAPI()
+app = FastAPI(title="API Backend CRM")
 
-app.include_router(crm.router, prefix="/api", tags=["CRM"])
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+app.include_router(crm_router)
