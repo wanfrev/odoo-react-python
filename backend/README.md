@@ -4,7 +4,7 @@ This backend connects to an Odoo instance via XML-RPC and exposes REST endpoints
 
 ## Features
 - Connects to Odoo using XML-RPC
-- Exposes `/crm/clients`, `/crm/contacts`, `/crm/leads` endpoints
+- Exposes `/crm/clients`, `/crm/contacts`, `/crm/leads`, `/crm/activities` endpoints
 - Data normalization for robust API responses
 - Pydantic models for data validation
 - CORS enabled for frontend integration
@@ -18,15 +18,13 @@ This backend connects to an Odoo instance via XML-RPC and exposes REST endpoints
 1. **Clone the repository**
 
 2. **Create and activate a virtual environment**
-   ```bash
    python -m venv env
    source env/bin/activate  # On Windows: env\Scripts\activate
-   ```
+
 
 3. **Install dependencies**
-   ```bash
    pip install -r requirements.txt
-   ```
+ 
 
 4. **Configure environment variables**
    Create a `.env` file in the backend root with:
@@ -39,10 +37,7 @@ This backend connects to an Odoo instance via XML-RPC and exposes REST endpoints
 
 ## Running the Backend
 
-From the backend root directory, run:
-```bash
-uvicorn app.main:app --reload
-```
+From the backend root directory, run: uvicorn app.main:app --reload
 
 The API will be available at `http://localhost:8000`.
 
@@ -51,16 +46,9 @@ The API will be available at `http://localhost:8000`.
 - `GET /crm/clients`   → List all clients (Odoo customers)
 - `GET /crm/contacts`  → List all contacts (Odoo partners)
 - `GET /crm/leads`     → List all leads (Odoo opportunities)
-
-You can test the API with [Postman](https://www.postman.com/) or visit the automatic docs at:
-- Swagger UI: `http://localhost:8000/docs`
-- ReDoc: `http://localhost:8000/redoc`
+- `GET /crm/activities`     → List all activies (Odoo activities)
 
 ## Notes
 - Make sure your Odoo instance is accessible from the backend server.
 - The backend normalizes data to avoid validation errors (e.g., converts `False` to `None` or `[]` as needed).
 - For production, adjust CORS and security settings as required.
-
----
-
-Feel free to contribute or open issues for improvements!

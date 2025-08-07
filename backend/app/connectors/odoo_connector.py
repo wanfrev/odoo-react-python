@@ -17,7 +17,6 @@ class OdooConnector:
         self.models = xmlrpc.client.ServerProxy(f"{self.url}/xmlrpc/2/object")
 
     def obtener_clientes(self):
-        # Adjust the domain and fields according to your Odoo configuration
         domain = []
         fields = ["id", "name", "email", "phone", "company_id"]
         clients = self.models.execute_kw(
@@ -30,7 +29,17 @@ class OdooConnector:
 
     def obtener_leads(self):
         domain = []
-        fields = ["id", "name", "probability", "stage_id"]
+        fields = [
+            "id",           
+            "name",         
+            "company_id",   
+            "partner_id",   
+            "email_from",   
+            "phone",        
+            "expected_revenue", 
+            "probability",  
+            "stage_id"      
+        ]
         leads = self.models.execute_kw(
             self.db, self.uid, self.password,
             "crm.lead", "search_read",
@@ -40,7 +49,23 @@ class OdooConnector:
         return leads
     def obtener_contacts(self):
         domain = []
-        fields = ["id", "name", "email", "phone", "company_id"]
+        fields = [
+            "id",
+            "name",
+            "email",
+            "phone",
+            "company_id",
+            "activity_ids",      
+            "country_id",        
+            "company_name",      
+            "street",
+            "street2",
+            "city",
+            "state_id",
+            "zip",         
+            "website",
+            "category_id"        
+        ]
         contacts = self.models.execute_kw(
             self.db, self.uid, self.password,
             "res.partner", "search_read",
@@ -48,3 +73,22 @@ class OdooConnector:
             {"fields": fields}
         )
         return contacts
+    def obtener_activities(self):
+        domain = []
+        fields = [
+            "id",
+            "activity_type_id",
+            "summary",
+            "note",
+            "date_deadline",
+            "user_id",
+            "res_id",
+            "res_model"
+        ]
+        activities = self.models.execute_kw(
+            self.db, self.uid, self.password,
+            "mail.activity", "search_read",
+            [domain],
+            {"fields": fields}
+        )
+        return activities

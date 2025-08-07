@@ -1,68 +1,30 @@
-# Requisitos previos
+## Odoo Project
 
-- Node.js >= 18.x
-- npm >= 9.x
+This is a simple React + Vite frontend for managing Odoo data.
 
-## Instalación
+### Features
+- View leads, contacts, and clients from Odoo
+- Clean and modern UI
+- Easy to customize
 
-1. Clona el repositorio o descarga el código fuente.
-2. Abre una terminal en la carpeta `frontend`.
-3. Instala las dependencias:
+### Getting Started
+1. Install dependencies:
+  ```bash
+  npm install
+  ```
+2. Start the development server:
+  ```bash
+  npm run dev
+  or 
+  yarn dev
+  ```
+3. Open your browser at [http://localhost:5173](http://localhost:5173)
 
-   ```bash
-   npm install
-   ```
-
-## Uso en desarrollo
-
-Inicia el servidor de desarrollo con recarga automática:
-
-```bash
-npm run dev
-yarn dev
-```
-
-Abre tu navegador en [http://localhost:5173](http://localhost:5173) para ver la aplicación.
-
-## Scripts disponibles
-
-- `npm run dev`: Inicia el servidor de desarrollo.
-- `npm run build`: Compila la app para producción.
-- `npm run preview`: Previsualiza la app de producción localmente.
-- `npm run lint`: Ejecuta ESLint para revisar el código.
-
-## Estructura del proyecto
-
-- `src/components/`: Componentes reutilizables (listas de clientes, contactos, leads).
-- `src/pages/`: Páginas y navegación por pestañas.
-- `src/services/api.ts`: Funciones para consumir la API de Odoo CRM.
-- `src/main.tsx`: Punto de entrada principal.
-- `public/`: Archivos estáticos.
-
-## Configuración de la API
-
-Por defecto, la API debe estar disponible en `http://localhost:8000`. Puedes modificar la URL en `src/services/api.ts` si tu backend está en otra dirección.
-
-## Notas
-
-- Los estilos se gestionan con CSS Modules para evitar conflictos globales.
-- El proyecto está configurado con ESLint y TypeScript para asegurar calidad y buenas prácticas.
-
-## Despliegue
-
-Para compilar la app para producción:
-
-```bash
-npm run build
-```
-
-Los archivos listos para producción estarán en la carpeta `dist/`.
-
----
-
-Si tienes dudas o problemas, revisa la documentación de Vite y React, o contacta al responsable del proyecto.
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Project Structure
+- `src/components/` — React components
+- `src/pages/` — Pages
+- `src/services/` — API calls
+- `public/` — Static assets
 
 ```js
 // eslint.config.js

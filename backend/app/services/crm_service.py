@@ -1,40 +1,21 @@
-
-
 from app.connectors.odoo_connector import OdooConnector
-from app.models.crm_models import Client, Lead
+from app.models.crm_models import Client, Lead, Activity
+from app.utils.odoo_normalizer import normalize_odoo_client, normalize_odoo_activity, normalize_odoo_lead
 
 connector = OdooConnector()
 
-
-
 def get_clients() -> list[Client]:
     data = connector.obtener_clientes()
-    normalized = []
-    for item in data:
-        # Normalize all fields that can be False but should be a string or list
-        for field in ["phone", "email", "name"]:
-            if item.get(field) is False:
-                item[field] = None
-        if item.get("company_id") is False:
-            item["company_id"] = []
-        normalized.append(Client(**item))
-    return normalized
-
-
+    return [Client(**normalize_odoo_client(item)) for item in data]
 
 def get_contacts() -> list[Client]:
     data = connector.obtener_contacts()
-    normalized = []
-    for item in data:
-        for field in ["phone", "email", "name"]:
-            if item.get(field) is False:
-                item[field] = None
-        if item.get("company_id") is False:
-            item["company_id"] = []
-        normalized.append(Client(**item))
-    return normalized
+    return [Client(**normalize_odoo_client(item)) for item in data]
 
 def get_leads() -> list[Lead]:
     data = connector.obtener_leads()
-    leads = [Lead(**item) for item in data]
-    return leads
+    return [Lead(**normalize_odoo_lead(item)) for item in data]
+
+def get_activities() -> list[Activity]:
+    data = connector.obtener_activities()
+    return [Activity(**normalize_odoo_activity(item)) for item in data]
